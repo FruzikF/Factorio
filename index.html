@@ -2,29 +2,54 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Моделирование систем | Личный кабинет</title>
+    <title>Система Дистанционного Обучения | Лабораторная работа</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #222; font-family: sans-serif; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; background: #2c3e50; color: white; padding: 10px; text-align: center; z-index: 10; font-size: 14px; }
-        #game-frame { width: 100%; height: 100%; border: none; margin-top: 40px; }
-        .loading { color: white; text-align: center; margin-top: 200px; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; color: #0f0; font-family: monospace; }
+        #boot-screen { padding: 20px; font-size: 14px; line-height: 1.5; }
+        #game-frame { display: none; width: 100%; height: 100%; border: none; }
+        .loading-bar { width: 0%; height: 2px; background: #0f0; transition: width 0.5s; }
     </style>
 </head>
 <body>
 
-<div class="overlay">
-    Платформа Электронного Обучения: Модуль "Логистика и Автоматизация" (8 класс)
+<div id="boot-screen">
+    <div>[ СИСТЕМА МОНИТОРИНГА УЧЕБНОГО ПРОЦЕССА v4.2 ]</div>
+    <div>> Инициализация виртуальной среды... OK</div>
+    <div>> Загрузка пакетов логистики (1.2 ГБ)... В ПРОЦЕССЕ</div>
+    <div class="loading-bar" id="progress"></div>
+    <div id="status">Ожидание ответа от сервера...</div>
+    <br>
+    <button id="start-btn" style="background:#0f0; color:#000; border:none; padding:10px; cursor:pointer; font-weight:bold;">ЗАПУСТИТЬ ЭМУЛЯТОР</button>
 </div>
 
-<iframe id="game-frame" src="https://wasm.v8.gl/?url=https://drive.google.com/uc?export=download&id=1ePhxxSGH6h7gKIasVY59eahKAZZ2HQBm" allow="fullscreen"></iframe>
-
-<div class="loading" id="load-text">Подготовка виртуальной среды... (может занять 2-5 минут)</div>
+<iframe id="game-frame" src="" allow="fullscreen; keyboard; mouse;"></iframe>
 
 <script>
-    // Скрываем надпись загрузки через некоторое время
-    setTimeout(() => {
-        document.getElementById('load-text').style.display = 'none';
-    }, 10000);
+    document.getElementById('start-btn').onclick = function() {
+        const frame = document.getElementById('game-frame');
+        const boot = document.getElementById('boot-screen');
+        const progress = document.getElementById('progress');
+        
+        // Твоя прямая ссылка на Google Диск
+        const zipUrl = 'https://drive.google.com/uc?export=download&id=1ePhxxSGH6h7gKIasVY59eahKAZZ2HQBm';
+        
+        // Используем сервис-прослойку, которая меньше лагает
+        const emulatorUrl = 'https://webvm.io/?display=1&url=' + encodeURIComponent(zipUrl);
+
+        this.style.display = 'none';
+        document.getElementById('status').innerText = '> Подключение к WebVM... Ждите (1-5 мин)';
+        
+        // Имитация полоски загрузки для беспалевности
+        let w = 0;
+        setInterval(() => { if(w < 95) { w += 1; progress.style.width = w + '%'; } }, 2000);
+
+        // Запуск самого процесса
+        setTimeout(() => {
+            boot.style.display = 'none';
+            frame.style.display = 'block';
+            frame.src = emulatorUrl;
+        }, 3000);
+    };
 </script>
 
 </body>
