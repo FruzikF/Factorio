@@ -1,12 +1,9 @@
 function launchApp() {
-    const frame = document.getElementById('game-engine');
-    const view = document.getElementById('game-view');
+    // Прямая ссылка на скачивание (лучше залей свой архив на Google Диск, как мы обсуждали)
+    const gameUrl = 'https://dl.factorio.com/releases/2.0.73_01kevhy7tbe64t1y9y6q3q8w10/factorio-demo_linux_2.0.73.tar.xz?secure=Kcye2RfJuiYc9vytfhu88Q,1773772776'; 
     
-    // Прямая ссылка на твой файл игры (пример)
-    const gameUrl = 'https://dl.factorio.com/releases/2.0.73_01kevhy7tbe64t1y9y6q3q8w10/factorio-demo_linux_2.0.73.tar.xz?secure=Kcye2RfJuiYc9vytfhu88Q,1773772776';
+    // Вместо запуска в окне, мы просто начинаем скачку
+    window.location.href = gameUrl;
     
-    // Инструкция для WebVM: загрузить образ и запустить
-    frame.src = 'https://webvm.io/?display=1&url=' + encodeURIComponent(gameUrl); 
-    
-    view.style.display = 'block';
+    alert("Загрузка учебных материалов началась. После скачивания распакуйте архив в папку 'Загрузки'.");
 }
