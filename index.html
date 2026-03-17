@@ -1,49 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет | EduPortal</title>
-    <style>
-        /* Красивое оформление под школьный сайт */
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; text-align: center; color: #333; }
-        .header { background: #2c3e50; color: white; padding: 20px; font-size: 20px; font-weight: bold; }
-        .container { max-width: 500px; margin: 60px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .btn { display: inline-block; background: #4a90e2; color: white; padding: 15px 35px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; cursor: pointer; border: none; transition: 0.3s; }
-        .btn:hover { background: #357abd; transform: translateY(-2px); }
-        .footer { margin-top: 20px; color: #888; font-size: 13px; line-height: 1.5; }
-    </style>
-</head>
-<body>
-
-<div class="header">Система Дистанционного Обучения v4.2</div>
-
-<div class="container">
-    <h2>Информатика: 8 класс</h2>
-    <p>Тема №5: <b>«Моделирование систем логистики»</b><br>Загрузите учебный симулятор для выполнения практической работы.</p>
-    
-    <button class="btn" onclick="launchApp()">Загрузить среду (1.2 ГБ)</button>
-    
-    <div class="footer" id="status">
-        Рекомендуется использовать браузер Chrome.<br>
-        После загрузки распакуйте архив в папку "Загрузки".
-    </div>
-</div>
-
 <script>
     function launchApp() {
-        // Твоя ссылка (Помни: она временная и может перестать работать через час!)
-        const gameUrl = 'https://dl.factorio.com/releases/2.0.73_01kevhy7tbe64t1y9y6q3q8w10/factorio-demo_linux_2.0.73.tar.xz?secure=Kcye2RfJuiYc9vytfhu88Q,1773772776';
+        // Твоя вечная ссылка с Google Диска
+        const gameUrl = 'https://drive.google.com/uc?export=download&id=1ePhxxSGH6h7gKIasVY59eahKAZZ2HQBm';
         
-        // Показываем уведомление
-        alert("Загрузка учебных материалов началась. Проверьте панель загрузок браузера.");
-        
-        // Обновляем текст на странице
-        document.getElementById('status').innerHTML = "<b style='color: green;'>Загрузка пошла! Ожидайте завершения.</b>";
+        // Уведомление для беспалевности
+        alert("Загрузка учебных материалов началась. Файл появится в папке 'Загрузки'.");
         
         // Сама команда на скачивание
         window.location.href = gameUrl;
     }
 </script>
-
-</body>
-</html>
