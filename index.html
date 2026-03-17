@@ -2,54 +2,53 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Система Дистанционного Обучения | Лабораторная работа</title>
+    <title>Личный кабинет | Образовательный портал</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; color: #0f0; font-family: monospace; }
-        #boot-screen { padding: 20px; font-size: 14px; line-height: 1.5; }
-        #game-frame { display: none; width: 100%; height: 100%; border: none; }
-        .loading-bar { width: 0%; height: 2px; background: #0f0; transition: width 0.5s; }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1a1a1a; font-family: 'Segoe UI', sans-serif; }
+        #portal-ui { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #f0f2f5; color: #333; }
+        .card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 450px; }
+        .btn { background: #4a90e2; color: white; border: none; padding: 18px 40px; border-radius: 10px; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #357abd; transform: translateY(-2px); }
+        #game-container { display: none; width: 100%; height: 100%; }
+        iframe { width: 100%; height: 100%; border: none; }
+        .header-top { position: absolute; top: 0; width: 100%; background: #2c3e50; color: white; padding: 10px 20px; font-size: 14px; text-align: left; box-sizing: border-box; }
     </style>
 </head>
 <body>
 
-<div id="boot-screen">
-    <div>[ СИСТЕМА МОНИТОРИНГА УЧЕБНОГО ПРОЦЕССА v4.2 ]</div>
-    <div>> Инициализация виртуальной среды... OK</div>
-    <div>> Загрузка пакетов логистики (1.2 ГБ)... В ПРОЦЕССЕ</div>
-    <div class="loading-bar" id="progress"></div>
-    <div id="status">Ожидание ответа от сервера...</div>
-    <br>
-    <button id="start-btn" style="background:#0f0; color:#000; border:none; padding:10px; cursor:pointer; font-weight:bold;">ЗАПУСТИТЬ ЭМУЛЯТОР</button>
+<div class="header-top">Система дистанционного обучения v4.2 | FruzikF_8B</div>
+
+<div id="portal-ui">
+    <div class="card">
+        <h2>Практическая работа №5</h2>
+        <p>Тема: "Моделирование логистических систем".<br>Нажмите для инициализации виртуальной среды.</p>
+        <button class="btn" onclick="startEmulator()">ЗАПУСТИТЬ СРЕДУ</button>
+    </div>
 </div>
 
-<iframe id="game-frame" src="" allow="fullscreen; keyboard; mouse;"></iframe>
+<div id="game-container">
+    <iframe id="emulator-frame" allow="fullscreen; keyboard; mouse;"></iframe>
+</div>
 
 <script>
-    document.getElementById('start-btn').onclick = function() {
-        const frame = document.getElementById('game-frame');
-        const boot = document.getElementById('boot-screen');
-        const progress = document.getElementById('progress');
-        
-        // Твоя прямая ссылка на Google Диск
+    function startEmulator() {
+        const ui = document.getElementById('portal-ui');
+        const container = document.getElementById('game-container');
+        const frame = document.getElementById('emulator-frame');
+
+        // Твоя ПРЯМАЯ ссылка на ZIP-архив с Google Диска
         const zipUrl = 'https://drive.google.com/uc?export=download&id=1ePhxxSGH6h7gKIasVY59eahKAZZ2HQBm';
         
-        // Используем сервис-прослойку, которая меньше лагает
-        const emulatorUrl = 'https://webvm.io/?display=1&url=' + encodeURIComponent(zipUrl);
+        // Используем только официальный домен WebVM.io (он самый надежный)
+        // Аргумент exec указывает путь к файлу внутри твоего архива
+        const webVmUrl = 'https://webvm.io/?display=1&url=' + encodeURIComponent(zipUrl);
 
-        this.style.display = 'none';
-        document.getElementById('status').innerText = '> Подключение к WebVM... Ждите (1-5 мин)';
+        ui.style.display = 'none';
+        container.style.display = 'block';
         
-        // Имитация полоски загрузки для беспалевности
-        let w = 0;
-        setInterval(() => { if(w < 95) { w += 1; progress.style.width = w + '%'; } }, 2000);
-
-        // Запуск самого процесса
-        setTimeout(() => {
-            boot.style.display = 'none';
-            frame.style.display = 'block';
-            frame.src = emulatorUrl;
-        }, 3000);
-    };
+        // Загружаем эмулятор
+        frame.src = webVmUrl;
+    }
 </script>
 
 </body>
