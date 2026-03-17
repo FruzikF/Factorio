@@ -1,9 +1,45 @@
-function launchApp() {
-    // Прямая ссылка на скачивание (лучше залей свой архив на Google Диск, как мы обсуждали)
-    const gameUrl = 'https://dl.factorio.com/releases/2.0.73_01kevhy7tbe64t1y9y6q3q8w10/factorio-demo_linux_2.0.73.tar.xz?secure=Kcye2RfJuiYc9vytfhu88Q,1773772776'; 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет ученика | EduPortal</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; margin: 0; text-align: center; }
+        .header { background: #2c3e50; color: white; padding: 20px; font-size: 22px; font-weight: bold; }
+        .container { max-width: 500px; margin: 60px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .btn { display: inline-block; background: #4a90e2; color: white; padding: 18px 35px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; border: none; transition: 0.3s; }
+        .btn:hover { background: #357abd; transform: translateY(-2px); }
+        .status { margin-top: 20px; color: #666; font-size: 14px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="header">Система Дистанционного Обучения v4.2</div>
+
+<div class="container">
+    <h2>Информатика: 8 класс</h2>
+    <p>Лабораторная работа №5: <br><b>"Моделирование логистических систем"</b></p>
     
-    // Вместо запуска в окне, мы просто начинаем скачку
-    window.location.href = gameUrl;
+    <button class="btn" onclick="launchApp()">Загрузить среду (1.2 ГБ)</button>
     
-    alert("Загрузка учебных материалов началась. После скачивания распакуйте архив в папку 'Загрузки'.");
-}
+    <div class="status" id="status-text">
+        Для запуска используйте папку "Загрузки".<br>
+        Инструкция по установке вложена в архив.
+    </div>
+</div>
+
+<script>
+    function launchApp() {
+        // Твоя ссылка на скачивание
+        const gameUrl = 'https://dl.factorio.com/releases/2.0.73_01kevhy7tbe64t1y9y6q3q8w10/factorio-demo_linux_2.0.73.tar.xz?secure=Kcye2RfJuiYc9vytfhu88Q,1773772776';
+        
+        // Меняем текст на кнопке, чтобы было понятно, что процесс пошел
+        document.getElementById('status-text').innerHTML = "<b style='color: green;'>Загрузка началась! Проверьте панель загрузок браузера.</b>";
+        
+        // Сама команда на скачивание
+        window.location.href = gameUrl;
+    }
+</script>
+
+</body>
+</html>
