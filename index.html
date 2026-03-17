@@ -2,52 +2,42 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Учебный портал | Личный кабинет</title>
+    <title>Личный кабинет | Электронная школа v4.2</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: sans-serif; }
-        #portal-ui { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #f0f2f5; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-        .btn { background: #4a90e2; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 18px; cursor: pointer; font-weight: bold; }
-        #game-container { display: none; width: 100%; height: 100%; background: black; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f7f9; margin: 0; color: #333; }
+        .top-bar { background: #2c3e50; color: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 50px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
+        h1 { color: #2c3e50; font-size: 24px; }
+        .lesson-info { background: #e8f4fd; border-left: 5px solid #3498db; padding: 20px; text-align: left; margin: 25px 0; }
+        .download-btn { display: inline-block; background: #27ae60; color: white; padding: 18px 40px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 18px; transition: 0.3s; border: none; cursor: pointer; }
+        .download-btn:hover { background: #219150; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3); }
+        .footer { margin-top: 50px; color: #999; font-size: 12px; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
 
-<div id="portal-ui">
-    <div class="card">
-        <h2>Практическая работа №5</h2>
-        <p>Тема: "Автоматизация и логистика".<br>Нажмите кнопку для запуска симулятора среды.</p>
-        <button class="btn" onclick="startEmulator()">Запустить симулятор</button>
+<div class="top-bar">
+    <div><b>МИНПРОСВЕЩЕНИЯ РФ</b></div>
+    <div>Пользователь: <b>Fruzik_8_B</b></div>
+</div>
+
+<div class="container">
+    <h1>Практическая работа по информатике</h1>
+    <div class="lesson-info">
+        <b>Тема:</b> Проектирование автоматизированных систем и логистических цепочек.<br>
+        <b>Задание:</b> Запустите среду моделирования и настройте добычу ресурсов согласно схеме №4.
+    </div>
+    
+    <p>Для выполнения работы необходимо загрузить локальную среду (Virtual Environment):</p>
+    
+    <a href="https://drive.google.com/uc?export=download&id=1ePhxxSGH6h7gKIasVY59eahKAZZ2HQBm" class="download-btn">
+        СКАЧАТЬ СРЕДУ (.ZIP 1.2 GB)
+    </a>
+
+    <div class="footer">
+        © 2026 Единая система дистанционного обучения. Файлы проверены антивирусом.
     </div>
 </div>
-
-<div id="game-container">
-    <iframe id="emulator-frame" allow="fullscreen"></iframe>
-</div>
-
-<script>
-    function startEmulator() {
-        const ui = document.getElementById('portal-ui');
-        const container = document.getElementById('game-container');
-        const frame = document.getElementById('emulator-frame');
-
-        // Твоя ПРЯМАЯ ссылка на Google Диск
-        const zipUrl = 'https://drive.google.com/uc?export=download&id=1ePhxxSGH6h7gKIasVY59eahKAZZ2HQBm';
-        
-        // Настройка WebVM:
-        // url = ссылка на твой архив
-        // exec = путь к запускаемому файлу внутри архива
-        const webVmUrl = 'https://webvm.io/?display=1&url=' + encodeURIComponent(zipUrl) + '&exec=/factorio/bin/x64/factorio';
-
-        // Прячем сайт, показываем эмулятор
-        ui.style.display = 'none';
-        container.style.display = 'block';
-        
-        // Загружаем эмулятор в iframe
-        frame.src = webVmUrl;
-    }
-</script>
 
 </body>
 </html>
